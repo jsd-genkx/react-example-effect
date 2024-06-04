@@ -8,11 +8,15 @@ function LiveClock() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date().toLocaleTimeString());
+      console.log("useEffect");
     }, 1000);
 
     // Cleanup function to clear the interval on unmount
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => {
+      clearInterval(intervalId);
+      console.log("clean up useEffect");
+    };
+  }, [currentTime]);
 
   return (
     <div className="h-screen flex justify-center items-center">
